@@ -1,0 +1,10 @@
+{
+    "userList": [
+        {
+            "userId": 1,
+            "username": "đòa tuấn anh",
+            "role": "dev",
+            "department": "it"
+        }
+    ]
+}

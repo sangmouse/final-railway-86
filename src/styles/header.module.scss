@@ -11,7 +11,7 @@
         display: inline-flex;
         align-items: center;
         li{
-            a{
+            a, button{
                 color: white;
                 font-weight: bold;
                 text-transform: uppercase;
@@ -20,6 +20,7 @@
                 font-size: 12px;
                 letter-spacing: 2px;
             }
+
         }
     }
 }

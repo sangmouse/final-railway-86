@@ -1,13 +1,21 @@
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/images/logo-white-sm.svg'
 import classes from '../styles/header.module.scss'
 
 const Header = () => {
+    const navigate = useNavigate()
+
+    const onSignOut = () => {
+        window.localStorage.removeItem('username')
+        window.localStorage.removeItem('password')
+        navigate('/sign-in')
+    }
 
     return <div className={classes.header}>
         <div className={classes.header__logo}>
-            <a href="#">
+            <Link to='/'>
                 <img src={logo} alt="" />
-            </a>
+            </Link>
         </div>
         <ul className={classes.header__menu}>
             <li>
@@ -20,7 +28,7 @@ const Header = () => {
                 <a href="#">Blog</a>
             </li>
             <li>
-                <a href="#">Contact</a>
+                <button onClick={onSignOut}>Sign Out</button>
             </li>
         </ul>
     </div>

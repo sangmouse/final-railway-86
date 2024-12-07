@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import "./index.scss"
@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import UserList from './components/UserList'
 import UserForm from './components/UserForm';
+import SignIn from './components/SignIn';
 
 const router = createBrowserRouter([
   {
@@ -21,9 +22,13 @@ const router = createBrowserRouter([
         element: <UserForm/>
       }
     ]
-
+  },
+  {
+    path: '/sign-in',
+    element: <SignIn/>
   }
 ])
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

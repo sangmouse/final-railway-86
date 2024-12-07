@@ -1,8 +1,11 @@
 .form {
     &__bg {
         background-color: #f2f2f2;
-        min-height: 100vh;
+        min-height: calc(100vh - 84px);
         padding: 50px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     &__container {
@@ -85,4 +88,10 @@
         height: 16px;
     }
 
+    &__msg-error {
+        color: red;
+        margin: 0 0 10px 0;
+        height: 19px;
+        font-size: 14px;
+    }
 }
