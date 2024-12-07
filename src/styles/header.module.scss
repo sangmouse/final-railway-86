@@ -1,0 +1,25 @@
+.header {
+    background-color: black;
+    padding: 30px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__menu {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: inline-flex;
+        align-items: center;
+        li{
+            a{
+                color: white;
+                font-weight: bold;
+                text-transform: uppercase;
+                text-decoration: none;
+                padding: 0 20px;
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+        }
+    }
+}

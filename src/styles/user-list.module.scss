@@ -1,0 +1,49 @@
+.user-list {
+    width: 80%;
+    margin: 50px auto;
+
+    &__btn-add-more {
+        background: rgb(235, 235, 235);
+        padding: 8px 15px;
+        border-radius: 5px;
+        letter-spacing: 2px;
+        margin: 0 0 15px 0;
+    }
+
+    &__btn-group {
+        display: inline-flex;
+        gap: 10px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+
+        tr, th, td {
+            border: 1px solid rgb(210, 210, 210);
+            padding: 15px 10px; 
+            font-size: 15px;
+        }
+        tr {
+            &:nth-child(even){
+                background: rgba(163, 163, 163, 0.048);
+            }
+        }
+
+        th {
+            background: rgba(238, 238, 238, 0.282);
+        }
+
+        th {
+            text-align: left;
+        }
+
+        td {
+            color: rgba(0, 0, 0, 0.78);
+
+            button {
+                width: 18px;
+            }
+        }
+    }
+}
