@@ -3,14 +3,32 @@ import trashIcon from "../assets/images/trash.svg";
 import editIcon from "../assets/images/edit.png";
 import viewIcon from "../assets/images/eye.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const UserList = () => {
+  const [userList, setUserList] = useState([]);
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  const getList = async () => {
+    const list = await fetch("http://localhost:3000/userList");
+    const data = await list.json();
+    setUserList(data);
+  };
+
+  useEffect(() => {
+    getList();
+  }, []);
+
+  console.log("userList", userList);
 
   return (
     <div className={classes["user-list"]}>
-      <button onClick={() => navigate('/create-user')} className={classes["user-list__btn-add-more"]}>+ New user</button>
+      <button
+        onClick={() => navigate("/create-user")}
+        className={classes["user-list__btn-add-more"]}
+      >
+        + New user
+      </button>
       <table>
         <tr>
           <th>User ID</th>
@@ -19,26 +37,33 @@ const UserList = () => {
           <th>Department</th>
           <th>Action</th>
         </tr>
-        <tr>
-          <td>1</td>
-          <td>John Sep</td>
-          <td>Developer</td>
-          <td>IT</td>
-          <td>
-            <div className={classes['user-list__btn-group']}>
-              <button>
-                <img src={trashIcon} />
-              </button>
-              <button>
-                <img src={editIcon} />
-              </button>
-              <button>
-                <img src={viewIcon} />
-              </button>
-            </div>
-          </td>
-        </tr>
+        {userList.length > 0 && userList.map((item) => {
+          return (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.username}</td>
+              <td>{item.role}</td>
+              <td>{item.department}</td>
+              <td>
+                <div className={classes["user-list__btn-group"]}>
+                  <button>
+                    <img src={trashIcon} />
+                  </button>
+                  <button onClick={() => navigate(`update/${item.id}`)}>
+                    <img src={editIcon} />
+                  </button>
+                  <button>
+                    <img src={viewIcon} onClick={() => navigate(`view/${item.id}`)}/>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          );
+        })}
       </table>
+        {
+          !userList.length && <div className={classes['user-list__no-data']}>No Data</div>
+        }
     </div>
   );
 };

@@ -20,7 +20,15 @@ const router = createBrowserRouter([
       {
         path: 'create-user',
         element: <UserForm/>
-      }
+      },
+      {
+        path: 'update/:userID',
+        element: <UserForm/>
+      },
+      {
+        path: 'view/:userID',
+        element: <UserForm/>
+      },
     ]
   },
   {
