@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
 import classes from "../styles/user-form.module.scss";
-import { nanoid } from "nanoid";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UserForm = () => {
   const navigate = useNavigate();
   const params = useParams();
+  const location = useLocation();
+  const isEdit =
+    (params?.userID && location.pathname.includes("update")) || !params?.userID;
   const [user, setUser] = useState({
     username: "",
     role: "dev",
     department: "it",
   });
+  const [msg, setMsg] = useState("");
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+    if (!user.username.trim()) {
+      setMsg("Username is required!");
+      return;
+    }
 
     if (!params.userID) {
       await fetch("http://localhost:3000/userList", {
@@ -27,6 +36,7 @@ const UserForm = () => {
           department: user.department,
         }),
       });
+      toast.success("Create user success!");
     } else {
       await fetch(`http://localhost:3000/userList/${params.userID}`, {
         method: "PATCH",
@@ -39,6 +49,7 @@ const UserForm = () => {
           department: user.department,
         }),
       });
+      toast.success("Update user success!");
     }
     navigate("/");
   };
@@ -66,8 +77,9 @@ const UserForm = () => {
     <div className={classes.form__bg}>
       <div className={classes.form__container}>
         <form action="" onSubmit={onSubmit}>
-          <h3>User Form</h3>
+          {isEdit && <h3>User Form</h3>}
           <div>
+            <p className={classes["form__msg-error"]}>{msg}</p>
             <div>
               <label htmlFor="username">User Name</label>
               <input
@@ -76,12 +88,14 @@ const UserForm = () => {
                 id="username"
                 placeholder="User name"
                 value={user.username}
-                onChange={(event) =>
+                disabled={!isEdit}
+                onChange={(event) => {
+                  setMsg('')
                   setUser({
                     ...user,
                     username: event.target.value,
-                  })
-                }
+                  });
+                }}
               />
             </div>
             <br />
@@ -92,6 +106,7 @@ const UserForm = () => {
                 name="role"
                 id="role"
                 value={user.role}
+                disabled={!isEdit}
                 onChange={(event) =>
                   setUser({
                     ...user,
@@ -113,6 +128,7 @@ const UserForm = () => {
                 name="department"
                 id="department"
                 value={user.department}
+                disabled={!isEdit}
                 onChange={(event) =>
                   setUser({
                     ...user,
@@ -126,14 +142,21 @@ const UserForm = () => {
                 <option value="consultant">Consultant</option>
               </select>
             </div>
+            {isEdit && (
+              <>
+                <br />
+                <br />
+                <div className={classes["form__btn-wrap"]}>
+                  <button className={classes["form__btn-submit"]}>
+                    <span>Submit</span>
+                    <span className={classes.form__icon}></span>
+                  </button>
+                </div>
+              </>
+            )}
             <br />
             <br />
-            <div className={classes["form__btn-wrap"]}>
-              <button className={classes["form__btn-submit"]}>
-                <span>Submit</span>
-                <span className={classes.form__icon}></span>
-              </button>
-            </div>
+            <Link to='/' className={classes['form__back-link']}>Back to home</Link>
           </div>
         </form>
       </div>

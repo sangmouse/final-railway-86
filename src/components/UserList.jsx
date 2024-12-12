@@ -4,6 +4,7 @@ import editIcon from "../assets/images/edit.png";
 import viewIcon from "../assets/images/eye.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const UserList = () => {
   const [userList, setUserList] = useState([]);
@@ -15,11 +16,18 @@ const UserList = () => {
     setUserList(data);
   };
 
+  const removeUser = async (id) => {
+    await fetch(`http://localhost:3000/userList/${id}`, {
+      method: 'DELETE'
+    });
+    await getList()
+    toast.success('Remove user success!')
+  }
+
   useEffect(() => {
     getList();
   }, []);
 
-  console.log("userList", userList);
 
   return (
     <div className={classes["user-list"]}>
@@ -46,7 +54,7 @@ const UserList = () => {
               <td>{item.department}</td>
               <td>
                 <div className={classes["user-list__btn-group"]}>
-                  <button>
+                  <button onClick={() => removeUser(item.id)}>
                     <img src={trashIcon} />
                   </button>
                   <button onClick={() => navigate(`update/${item.id}`)}>

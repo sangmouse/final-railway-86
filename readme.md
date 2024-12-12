@@ -39,3 +39,10 @@ stack:
 - react, react router, redux toolkit
 - api: json server
 - bootstrap, tailwindcss, module scss
+
+
+view
+  - ẩn text user form
+  - ẩn button submit
+  - disable all các input / select
+  - check khi nào là update / view
