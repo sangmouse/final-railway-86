@@ -6,20 +6,6 @@ import twitter from "../assets/images/twitter.png";
 const Footer = () => {
   return (
     <div className={classes.footer}>
-      <ul className={classes.footer__menu}>
-        <li>
-          <a href="#">Home</a>
-        </li>
-        <li>
-          <a href="#">Pages</a>
-        </li>
-        <li>
-          <a href="#">Blog</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li>
-      </ul>
       <hr />
       <div className={classes.footer__bottom}>
         <ul className={classes.footer__icons}>

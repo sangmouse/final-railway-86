@@ -1,10 +1,16 @@
 {
   "userList": [
     {
-      "id": "e617",
+      "id": "94a3",
       "username": "vũ việt tuấn",
-      "role": "ba",
-      "department": "it"
+      "role": "dev",
+      "department": "consultant"
+    },
+    {
+      "id": "7e1e",
+      "username": "vũ việt tuấn",
+      "role": "dev",
+      "department": "sale"
     }
   ]
 }

@@ -19,15 +19,6 @@ const Header = () => {
         </div>
         <ul className={classes.header__menu}>
             <li>
-                <a href="#">Home</a>
-            </li>
-            <li>
-                <a href="#">Pages</a>
-            </li>
-            <li>
-                <a href="#">Blog</a>
-            </li>
-            <li>
                 <button onClick={onSignOut}>Sign Out</button>
             </li>
         </ul>

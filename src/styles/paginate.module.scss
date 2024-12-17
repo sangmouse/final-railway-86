@@ -1,0 +1,52 @@
+.paginate {
+  margin: 20px 0 0 0;
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    li {
+      display: inline-flex;
+
+      button {
+        border: 1px solid rgb(202, 202, 202);
+        padding: 10px;
+        width: 30px;
+        height: 30px;
+        overflow: hidden;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.active {
+          color: white;
+          background: black;
+        }
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  &__icon {
+    span {
+      background-image: url(../../public/angle-small-left.png);
+      width: 16px;
+      height: 16px;
+      display: inline-flex;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  &__icon-right {
+    span {
+      background-image: url(../../public/angle-small-right.png);
+    }
+  }
+}
